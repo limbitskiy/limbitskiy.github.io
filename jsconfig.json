@@ -1,0 +1,7 @@
+{
+  // "resolveJsonModule": true,
+  "include": [
+    "./components/**/*",
+    "*"
+  ]
+}
