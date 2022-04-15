@@ -1,5 +1,46 @@
 {
-  "country": "Russia",
-  "name": "Eugene Garagan",
-  "position": "Front End Developer"
+  "meta": {
+    "keys": {
+      "name": "Name",
+      "age": "Age",
+      "country": "Country",
+      "position": "Position"
+    },
+    "values": {
+      "name": "Eugene Garagan",
+      "country": "Russia",
+      "position": "Front End Developer"
+    }
+  },
+  "form": {
+    "title": "...drop me a line",
+    "namePlaceholder": "name",
+    "msgPlaceholder": "message",
+    "sendText": "SEND",
+    "afterSendBtn": "All the fields are optional"
+  },
+  "sections": {
+    "about": "About me",
+    "skills": "Skills",
+    "experience": "Work Experience",
+    "pages": "Web pages created by me (reverse-cronological)"
+  },
+  "experience": {
+    "rh": {
+      "title": "Remote Helpers",
+      "years": "2021 - now",
+      "desc": "Working with different companies as a contractor. Mostly creating web pages from scratch: first designing, then coding in WordPress or Vue."
+    },
+    "himpost": {
+      "title": "Himpost",
+      "years": "2021 - 2021",
+      "desc": "Company, specializing in chemical production. Redesigned their main website and created a few small e-shops for them using vue.js"
+    },
+    "root": {
+      "title": "root.ua",
+      "years": "2017 - 2018",
+      "desc": "Learning basics about HTML/CSS and taking my first steps towards being a front end dev. Creating my first web-pages was so exiting!"
+    }
+  },
+  "about": "Programming since 2015. I'm a very curious person, trying to learn something new every day. Profficient in HTML, CSS anf JS. I've been learning vue.js and working with it for the last year. My vue.js projects are listed below. I have also worked a lot with wordpress, know a little of PHP. And i have always used Git for version control."
 }

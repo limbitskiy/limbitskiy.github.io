@@ -2,7 +2,8 @@
   <ul class="skill-list">
     <li v-for="skill in skills" :key="skill">
       <p>{{ skill.name }}</p>
-      <progress max="100" :value="skill.prof"></progress>
+      <!-- <progress max="100" :value="skill.prof"></progress> -->
+      <TheProgressBar :prof="skill.prof" />
     </li>
   </ul>
 </template>

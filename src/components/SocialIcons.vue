@@ -1,28 +1,13 @@
 <template>
   <ul class="social">
     <li>
-      <a
-        id="social-whatsapp"
-        href="https://wa.me/79166335623"
-        onclick="ym(87449113,'reachGoal','social-whatsapp')"
-        ><i class="fab fa-whatsapp"></i
-      ></a>
+      <a id="social-whatsapp" href="https://wa.me/79015398173"><i class="fab fa-whatsapp"></i></a>
     </li>
     <li>
-      <a
-        id="social-telegram"
-        href="https://telegram.me/masterZUZU"
-        onclick="ym(87449113,'reachGoal','social-telegram')"
-        ><i class="fab fa-telegram"></i
-      ></a>
+      <a id="social-telegram" href="https://telegram.me/e_garagan"><i class="fab fa-telegram"></i></a>
     </li>
     <li>
-      <a
-        id="social-youtube"
-        href="https://www.youtube.com/channel/UCv8shipzYR9q7sFwmniAbRg"
-        onclick="ym(87449113,'reachGoal','social-youtube')"
-        ><i class="fab fa-youtube"></i
-      ></a>
+      <a id="social-youtube" href="viber://chat?number=79015397183"><i class="fab fa-viber"></i></a>
     </li>
   </ul>
 </template>

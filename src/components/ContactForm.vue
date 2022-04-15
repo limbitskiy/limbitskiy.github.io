@@ -1,22 +1,16 @@
 <template>
   <div class="contact-form">
-    <p>...drop me a line</p>
+    <p>{{ $t('form.title') }}</p>
     <form>
-      <TheInput v-model="name" placeholder="name" />
-      <TheTextarea v-model="msg" placeholder="message" />
-      <TheBtn
-        :id="this.btnId"
-        :onclick="this.onclick"
-        color="var(--grey-text)"
-        @click="
-          sendData();
-          afterSendData();
-        "
-        >DROP</TheBtn
-      >
+      <TheInput v-model="name" :placeholder="$t('form.namePlaceholder')" />
+      <TheTextarea v-model="msg" :placeholder="$t('form.msgPlaceholder')" />
+      <TheBtn :id="this.btnId" :onclick="this.onclick" color="var(--grey-text)" @click="
+  sendData();
+afterSendData();
+      ">{{ $t('form.sendText') }}</TheBtn>
     </form>
     <p>
-      <span>*</span>All the fields are optional, as is the message itself ;)
+      <span>*</span>{{ $t('form.afterSendBtn') }}
     </p>
   </div>
 </template>

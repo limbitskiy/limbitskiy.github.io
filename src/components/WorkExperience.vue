@@ -1,9 +1,9 @@
 <template>
   <ul class="portfolio-list">
-    <li v-for="exp in experiences" :key="exp">
-      <p class="title">{{ exp.title }}</p>
-      <p class="years">{{ exp.years }}</p>
-      <p class="desc">{{ exp.desc }}</p>
+    <li v-for='exp in experience' :key="exp">
+      <p class="title">{{ $t("experience." + exp + ".title") }}</p>
+      <p class="years">{{ $t("experience." + exp + ".years") }}</p>
+      <p class="desc">{{ $t("experience." + exp + ".desc") }}</p>
     </li>
   </ul>
 </template>

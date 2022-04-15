@@ -13,13 +13,16 @@ export default createStore({
         flag: require('@/assets/ru.png')
       }
     ],
-    about:
-      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)",
     avatar: {
       path: "/images/avatar.jpg",
       alt: "My face. Black and white",
     },
     myPages: [
+      {
+        name: "Mr. Miyagi",
+        address: "https://mrmiyagisalesmethode.com/",
+        tech: "wordpress",
+      },
       {
         name: "zuzumaster.ru",
         address: "https://zuzumaster.ru",
@@ -35,19 +38,49 @@ export default createStore({
         address: "https://new.rh-s.com",
         tech: "wordpress",
       },
+      {
+        name: "Himpost",
+        address: "https://himpost.com/",
+        tech: "joomla",
+      },
+      {
+        name: "nalivnoy pol (e-shop#1)",
+        address: "http://nalivnoy.himpost.com/",
+        tech: "vue.js",
+      },
+      {
+        name: "polimochevina (e-shop#2)",
+        address: "http://polimochevina.himpost.com/",
+        tech: "vue.js",
+      },
+      {
+        name: "kover (e-shop#3)",
+        address: "http://kover.himpost.com/",
+        tech: "vue.js",
+      },
+      {
+        name: "d4 (e-shop#4)",
+        address: "http://d4.himpost.com/",
+        tech: "vue.js",
+      },
+      {
+        name: "pedrollo",
+        address: "http://pedrollo.services/",
+        tech: "HTML/CSS",
+      },
     ],
     skills: [
       {
         name: "HTML",
-        prof: 90,
+        prof: 100,
       },
       {
         name: "CSS",
-        prof: 90,
+        prof: 100,
       },
       {
         name: "JS",
-        prof: 80,
+        prof: 90,
       },
       {
         name: "vue.js",
@@ -59,16 +92,7 @@ export default createStore({
       },
     ],
     experience: [
-      {
-        title: "Remote Helpers",
-        years: "2020 - 2021",
-        desc: "Working with different companies as a contractor. Mostly creating wep pages from scratch: first designing, then coding in WordPress or Vue.",
-      },
-      {
-        title: "root.ua",
-        years: "2017 - 2018",
-        desc: "Learning basics about HTML/CSS and taking my first steps towards being a front end dev. Creating my first web-pages was so exiting!",
-      },
+      "rh", "himpost", "root"
     ],
   },
   mutations: {

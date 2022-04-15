@@ -41,10 +41,10 @@ export default {
       <div class="meta">
         <img :src="this.avatar.path" :alt="this.avatar.alt" />
         <div class="meta-text">
-          <p>Name: <span>{{ $t('name') }}</span></p>
-          <p>Age: <span>35</span></p>
-          <p>Country: <span>{{ $t('country') }}</span></p>
-          <p>Position: <span>{{ $t('position') }}</span></p>
+          <p>{{ $t('meta.keys.name') }}: <span>{{ $t('meta.values.name') }}</span></p>
+          <p>{{ $t('meta.keys.age') }}: <span>35</span></p>
+          <p>{{ $t('meta.keys.country') }}: <span>{{ $t('meta.values.country') }}</span></p>
+          <p>{{ $t('meta.keys.position') }}: <span>{{ $t('meta.values.position') }}</span></p>
         </div>
       </div>
       <ContactForm />
@@ -54,23 +54,23 @@ export default {
     <transition name="slide" appear>
       <main>
         <section class="about">
-          <div class="section-title">Summary:</div>
+          <div class="section-title">{{ $t('sections.about') }}:</div>
           <div class="section-text">
-            {{ this.about }}
+            {{ $t('about') }}
           </div>
         </section>
 
         <section class="section">
           <div class="split-two">
             <div>
-              <div class="section-title">Skills:</div>
+              <div class="section-title">{{ $t('sections.skills') }}:</div>
               <div class="section-text">
                 <TheSkills :skills="this.skillsList" />
               </div>
             </div>
 
             <div>
-              <div class="section-title">Work Experience:</div>
+              <div class="section-title">{{ $t('sections.experience') }}:</div>
               <div class="section-text">
                 <WorkExperience :experiences="this.experience" />
               </div>
@@ -80,7 +80,7 @@ export default {
 
         <section>
           <div class="section-title">
-            Web pages created by me (reverse-cronological):
+            {{ $t('sections.pages') }}:
           </div>
           <div class="section-text">
             <LinksList :links="this.myPages" />
