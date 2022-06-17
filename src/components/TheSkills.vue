@@ -1,18 +1,18 @@
 <template>
   <ul class="skill-list">
-    <li v-for="skill in skills" :key="skill">
+    <li v-for="skill in props.skills" :key="skill">
       <p>{{ skill.name }}</p>
-      <!-- <progress max="100" :value="skill.prof"></progress> -->
       <TheProgressBar :prof="skill.prof" />
     </li>
   </ul>
 </template>
 
-<script>
-export default {
-  name: "TheSkills",
-  props: ["skills"],
-};
+<script setup>
+import { defineProps } from 'vue'
+import TheProgressBar from "@/components/UI/TheProgressBar";
+
+const props = defineProps(["skills"])
+
 </script>
 
 <style lang="scss" scoped>
@@ -29,7 +29,7 @@ li {
 }
 
 .skill-list {
-  margin-left: 1.5rem;
   list-style: disc;
+  padding-left: 1rem;
 }
 </style>

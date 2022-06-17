@@ -1,8 +1,6 @@
 import { createApp } from "vue";
 import App from "@/App.vue";
-// import router from "@/router";
 import store from "@/store";
-import commonMethods from "@/mixins/commonMethods";
 import components from "@/components/UI";
 import i18n from "./i18n"
 
@@ -15,6 +13,4 @@ components.forEach((component) => {
 app
   .use(store)
   .use(i18n)
-  .mixin(commonMethods)
-  // .use(router)
   .mount("#app");

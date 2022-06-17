@@ -12,12 +12,6 @@
   </ul>
 </template>
 
-<script>
-export default {
-  name: "SocialIcons",
-};
-</script>
-
 <style lang="scss" scoped>
 .social {
   display: flex;

@@ -2,7 +2,6 @@ import { createStore } from "vuex";
 
 export default createStore({
   state: {
-    // showModal: false,
     locales: [
       {
         name: 'en',
@@ -79,16 +78,28 @@ export default createStore({
         prof: 100,
       },
       {
-        name: "JS",
+        name: "JavaScript",
         prof: 90,
       },
       {
-        name: "vue.js",
+        name: "TypeScript",
         prof: 80,
       },
       {
+        name: "vue.js",
+        prof: 90,
+      },
+      {
+        name: "WordPress",
+        prof: 90,
+      },
+      {
         name: "PHP",
-        prof: 50,
+        prof: 40,
+      },
+      {
+        name: "Git",
+        prof: 100,
       },
     ],
     experience: [
@@ -96,21 +107,5 @@ export default createStore({
     ],
   },
   mutations: {
-    // setShowModal(state, value) {
-    //   state.showModal = value
-    // },
-    // addSkill(state, skill) {
-    //   state.skills.push(skill)
-    // },
-    // setSkills(state, skills) {
-    //   state.skills = skills
-    // }
   },
-  // actions: {
-  //   loadSkills({ commit }) {
-  //     fetch('/skills.json')
-  //       .then(res => res.json())
-  //       .then(data => commit('setSkills', data))
-  //   }
-  // }
 });

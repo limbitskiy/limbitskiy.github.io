@@ -1,7 +1,6 @@
 <template>
   <p>{{ t("hello") }}</p>
   <p>{{ t("name") }}</p>
-
 </template>
 
 <script>

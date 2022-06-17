@@ -1,50 +1,44 @@
-<script>
+<script setup>
+import { onMounted } from 'vue'
+import { useStore } from 'vuex'
+import { useI18n } from "vue-i18n";
+import i18n from '@/i18n.js'
 import ContactForm from "@/components/ContactForm.vue";
 import SocialIcons from "@/components/SocialIcons.vue";
 import LinksList from "@/components/LinksList.vue";
 import TheSkills from "@/components/TheSkills.vue";
 import WorkExperience from "@/components/WorkExperience.vue";
 import TheLocalePicker from "@/components/TheLocalePicker.vue";
-// import ModalWindow from "@/components/ModalWindow.vue";
-// import TheSettings from "@/components/TheSettings.vue";
 
-export default {
-  components: {
-    ContactForm,
-    SocialIcons,
-    LinksList,
-    TheSkills,
-    WorkExperience,
-    TheLocalePicker,
-  },
-  methods: {
-    changeLocale(locale) {
-      this.$i18n.locale = locale;
-    }
-  },
-  created() {
-    // this.$store.dispatch("loadSkills");
-  },
+const store = useStore()
+
+const { t: translate } = useI18n({
+  inheritLocale: true,
+  useScope: "global",
+})
+
+const changeLocale = (lang) => {
+  i18n.global.locale.value = lang;
 };
+
+onMounted(() => {
+  console.clear()
+  console.warn('Нашли ошибку? Напишите мне на gagarinbrood@gmail.com')
+})
+
 </script>
 
 <template>
-  <!-- <div class="settings-btn" @click="this.$store.commit('setShowModal', true)">
-    <i class="fas fa-cog"></i>
-  </div>
-  <ModalWindow v-if="this.showModal">
-    <TheSettings />
-  </ModalWindow> -->
   <div class="layout">
     <aside>
-      <TheLocalePicker :languages='this.locales' @changeLocale="changeLocale($event)" />
+      <TheLocalePicker :languages='store.state.locales' @changeLocale="changeLocale($event)" />
       <div class="meta">
-        <img :src="this.avatar.path" :alt="this.avatar.alt" />
+        <img :src="store.state.avatar.path" :alt="store.state.avatar.alt" />
         <div class="meta-text">
-          <p>{{ $t('meta.keys.name') }}: <span>{{ $t('meta.values.name') }}</span></p>
-          <p>{{ $t('meta.keys.age') }}: <span>35</span></p>
-          <p>{{ $t('meta.keys.country') }}: <span>{{ $t('meta.values.country') }}</span></p>
-          <p>{{ $t('meta.keys.position') }}: <span>{{ $t('meta.values.position') }}</span></p>
+          <p>{{ translate('meta.keys.name') }}: <span>{{ translate('meta.values.name') }}</span></p>
+          <p>{{ translate('meta.keys.age') }}: <span>35</span></p>
+          <p>{{ translate('meta.keys.country') }}: <span>{{ translate('meta.values.country') }}</span></p>
+          <p>{{ translate('meta.keys.position') }}: <span>{{ translate('meta.values.position') }}</span></p>
         </div>
       </div>
       <ContactForm />
@@ -54,25 +48,25 @@ export default {
     <transition name="slide" appear>
       <main>
         <section class="about">
-          <div class="section-title">{{ $t('sections.about') }}:</div>
+          <div class="section-title">{{ translate('sections.about') }}:</div>
           <div class="section-text">
-            {{ $t('about') }}
+            {{ translate('about') }}
           </div>
         </section>
 
         <section class="section">
           <div class="split-two">
             <div>
-              <div class="section-title">{{ $t('sections.skills') }}:</div>
+              <div class="section-title">{{ translate('sections.skills') }}:</div>
               <div class="section-text">
-                <TheSkills :skills="this.skillsList" />
+                <TheSkills :skills="store.state.skills" />
               </div>
             </div>
 
             <div>
-              <div class="section-title">{{ $t('sections.experience') }}:</div>
+              <div class="section-title">{{ translate('sections.experience') }}:</div>
               <div class="section-text">
-                <WorkExperience :experiences="this.experience" />
+                <WorkExperience :experience="store.state.experience" />
               </div>
             </div>
           </div>
@@ -80,10 +74,10 @@ export default {
 
         <section>
           <div class="section-title">
-            {{ $t('sections.pages') }}:
+            {{ translate('sections.pages') }}:
           </div>
           <div class="section-text">
-            <LinksList :links="this.myPages" />
+            <LinksList :links="store.state.myPages" />
           </div>
         </section>
       </main>
