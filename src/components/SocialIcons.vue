@@ -16,6 +16,7 @@
 .social {
   display: flex;
   gap: 0.8rem;
-  font-size: 1.8rem;
+  font-size: 1.3rem;
+  padding: 0;
 }
 </style>

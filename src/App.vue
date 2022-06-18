@@ -1,16 +1,28 @@
 <script setup>
-import { onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useStore } from 'vuex'
 import { useI18n } from "vue-i18n";
 import i18n from '@/i18n.js'
-import ContactForm from "@/components/ContactForm.vue";
+// import ContactForm from "@/components/ContactForm.vue";
 import SocialIcons from "@/components/SocialIcons.vue";
 import LinksList from "@/components/LinksList.vue";
 import TheSkills from "@/components/TheSkills.vue";
 import WorkExperience from "@/components/WorkExperience.vue";
 import TheLocalePicker from "@/components/TheLocalePicker.vue";
+import ModeSwitch from '@/components/UI/ModeSwitch.vue';
 
 const store = useStore()
+// let cursorColor = 'white'
+// const cursorActiveColor = 'orange'
+
+// let lastMousePosition = {
+//   x: null,
+//   y: null
+// }
+
+// const cursors = []
+
+const aside = ref(null)
 
 const { t: translate } = useI18n({
   inheritLocale: true,
@@ -24,64 +36,149 @@ const changeLocale = (lang) => {
 onMounted(() => {
   console.clear()
   console.warn('Нашли ошибку? Напишите мне на gagarinbrood@gmail.com')
+
+  // const canvas = document.querySelector('canvas')
+  // canvas.width = innerWidth
+  // canvas.height = innerHeight
+
+  // const ctx = canvas.getContext('2d')
+
+  // class Cursor {
+  //   constructor(position) {
+  //     this.position = position
+  //     this.opacity = 9
+  //   }
+
+  //   draw() {
+  //     ctx.beginPath()
+  //     ctx.fillStyle = `rgba(255, 255, 255, 0.${this.opacity})`
+  //     ctx.arc(this.position.x, this.position.y, 6, 0, Math.PI * 2)
+  //     ctx.fill()
+  //     this.opacity > 0 ? this.opacity-- : this.opacity
+
+  //     // console.log(ctx.fillStyle);
+  //   }
+  // }
+
+  // const loop = () => {
+  //   requestAnimationFrame(loop)
+  //   ctx.clearRect(0, 0, innerWidth, innerHeight)
+  //   cursors.forEach((item, index) => {
+  //     if (item.opacity === 0) {
+  //       cursors.splice(index, 1)
+  //     }
+  //     item.draw()
+  //   })
+  //   ctx.beginPath()
+  //   ctx.fillStyle = cursorColor
+  //   ctx.arc(lastMousePosition.x, lastMousePosition.y, 6, 0, Math.PI * 2)
+  //   ctx.fill()
+  // }
+
+  // loop()
+
+  // addEventListener('mousemove', (e) => {
+  //   cursors.push(new Cursor({ x: e.x, y: e.y }))
+  //   // console.log(cursors);
+
+  //   lastMousePosition = {
+  //     x: e.x,
+  //     y: e.y
+  //   }
+
+
+  // })
+
+  // addEventListener('mousedown', () => {
+  //   cursorColor = 'orange'
+  // })
+
+  // addEventListener('mouseup', () => {
+  //   cursorColor = 'white'
+  // })
+
+  addEventListener('scroll', () => {
+    if (innerWidth > 768) {
+      aside.value.style.paddingTop = 'calc(' + scrollY + 'px + 4rem)'
+    }
+  })
 })
 
 </script>
 
 <template>
-  <div class="layout">
-    <aside>
-      <TheLocalePicker :languages='store.state.locales' @changeLocale="changeLocale($event)" />
-      <div class="meta">
-        <img :src="store.state.avatar.path" :alt="store.state.avatar.alt" />
-        <div class="meta-text">
-          <p>{{ translate('meta.keys.name') }}: <span>{{ translate('meta.values.name') }}</span></p>
-          <p>{{ translate('meta.keys.age') }}: <span>35</span></p>
-          <p>{{ translate('meta.keys.country') }}: <span>{{ translate('meta.values.country') }}</span></p>
-          <p>{{ translate('meta.keys.position') }}: <span>{{ translate('meta.values.position') }}</span></p>
+  <!-- <canvas ref="canvas"></canvas> -->
+  <div class="layout-wrap" :class="{
+    'light-theme-text': store.state.lightTheme, 'dark-theme-text': store.state.darkTheme,
+    '': store.state.lightTheme, 'dark-theme-bg': store.state.darkTheme
+  }">
+    <div class="layout">
+      <aside ref='aside' :class="{ 'light-theme-bg': store.state.lightTheme, '': store.state.darkTheme }">
+        <div class="aside-inner">
+          <div class="aside-header">
+            <TheLocalePicker :languages='store.state.locales' @changeLocale="changeLocale($event)" />
+            <ModeSwitch />
+          </div>
+          <div class="meta">
+            <img :src="store.state.avatar.path" :alt="store.state.avatar.alt" />
+            <div class="meta-text">
+              <p :class="{ 'light-theme-text': store.state.lightTheme, 'dark-theme-text': store.state.darkTheme }">
+                {{ translate('meta.keys.name') }}: <span>{{ translate('meta.values.name') }}</span>
+              </p>
+              <p :class="{ 'light-theme-text': store.state.lightTheme, 'dark-theme-text': store.state.darkTheme }">
+                {{ translate('meta.keys.age') }}: <span>35</span>
+              </p>
+              <p :class="{ 'light-theme-text': store.state.lightTheme, 'dark-theme-text': store.state.darkTheme }">
+                {{ translate('meta.keys.country') }}: <span>{{ translate('meta.values.country') }}</span>
+              </p>
+              <p :class="{ 'light-theme-text': store.state.lightTheme, 'dark-theme-text': store.state.darkTheme }">
+                {{ translate('meta.keys.position') }}: <span>{{ translate('meta.values.position') }}</span>
+              </p>
+            </div>
+          </div>
+          <!-- <ContactForm /> -->
+          <SocialIcons />
         </div>
-      </div>
-      <ContactForm />
-      <SocialIcons />
-    </aside>
+      </aside>
 
-    <transition name="slide" appear>
-      <main>
-        <section class="about">
-          <div class="section-title">{{ translate('sections.about') }}:</div>
-          <div class="section-text">
-            {{ translate('about') }}
-          </div>
-        </section>
+      <transition name="slide" appear>
+        <main>
+          <section class="about">
+            <div class="section-title">{{ translate('sections.about') }}:</div>
+            <div class="section-text">
+              {{ translate('about') }}
+            </div>
+          </section>
 
-        <section class="section">
-          <div class="split-two">
-            <div>
-              <div class="section-title">{{ translate('sections.skills') }}:</div>
-              <div class="section-text">
-                <TheSkills :skills="store.state.skills" />
+          <section class="section">
+            <div class="split-two">
+              <div>
+                <div class="section-title">{{ translate('sections.skills') }}:</div>
+                <div class="section-text">
+                  <TheSkills :skills="store.state.skills" />
+                </div>
+              </div>
+
+              <div>
+                <div class="section-title">{{ translate('sections.experience') }}:</div>
+                <div class="section-text">
+                  <WorkExperience :experience="store.state.experience" />
+                </div>
               </div>
             </div>
+          </section>
 
-            <div>
-              <div class="section-title">{{ translate('sections.experience') }}:</div>
-              <div class="section-text">
-                <WorkExperience :experience="store.state.experience" />
-              </div>
+          <section>
+            <div class="section-title">
+              {{ translate('sections.pages') }}:
             </div>
-          </div>
-        </section>
-
-        <section>
-          <div class="section-title">
-            {{ translate('sections.pages') }}:
-          </div>
-          <div class="section-text">
-            <LinksList :links="store.state.myPages" />
-          </div>
-        </section>
-      </main>
-    </transition>
+            <div class="section-text">
+              <LinksList :links="store.state.myPages" />
+            </div>
+          </section>
+        </main>
+      </transition>
+    </div>
   </div>
 </template>
 
@@ -92,17 +189,18 @@ onMounted(() => {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  // font-feature-settings: "pnum" on, "lnum" on;
+  font-feature-settings: "pnum" on, "lnum" on;
 
-  --accent-color1: #34779d;
+  --accent-color: #34779d;
 
   --black-color: #222222;
+  --white-color: #fff;
 
   --grey-text: #888888;
-  --lightgrey-text: #c7c7c7;
+  // --lightgrey-text: #c7c7c7;
 
-  --grey-bg: #ededed;
-  --grey-bg-light: #f5f5f5;
+  --light-bg: #f5f5f5;
+  --dark-bg: #1a1a1a;
 
   --font-xsmall: 0.75rem;
   --font-small: 0.875rem;
@@ -127,12 +225,12 @@ onMounted(() => {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: var(--grey-text);
-  background-color: var(--grey-bg-light);
   min-height: 100vh;
   overflow-y: hidden;
 }
 
 html {
+  // cursor: none;
   scroll-behavior: smooth;
 }
 
@@ -142,7 +240,7 @@ a {
   transition: color 0.3s ease;
 
   &:hover {
-    color: var(--accent-color1);
+    color: var(--accent-color);
   }
 }
 
@@ -153,16 +251,15 @@ p {
   line-height: 30px;
 }
 
-// ol {
-//   margin-left: 3vw;
-
-//   li::marker {
-//     font-weight: 700;
-//   }
-// }
-
 ul {
   list-style: none;
+}
+
+canvas {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 }
 
 ::-webkit-scrollbar {
@@ -180,14 +277,6 @@ ul {
     background: rgb(90, 90, 90);
   }
 }
-
-// .small-window {
-//   background-color: var(--grey-bg);
-//   box-shadow: var(--box-shadow);
-//   margin-inline: auto;
-//   padding: 2rem;
-//   width: 100%;
-// }
 
 // =====UTILITY=====
 
@@ -240,7 +329,7 @@ ul {
 }
 
 .accent-text {
-  color: var(--accent-color1);
+  color: var(--accent-color);
 }
 
 .btn-group {
@@ -262,24 +351,49 @@ ul {
   justify-content: center;
 }
 
+.dark-theme-bg {
+  background-color: var(--dark-bg);
+}
+
+.light-theme-bg {
+  background-color: var(--light-bg);
+}
+
+.dark-theme-text {
+  color: var(--white-color);
+}
+
+.light-theme-text {
+  color: var(--black-color);
+}
+
 // =====PAGE=====
 
+.layout-wrap {
+  transition: background-color .5s;
+  width: 100vw;
+}
+
 aside {
-  background-color: var(--grey-bg);
-  background: linear-gradient(0deg,
-      rgba(246, 246, 246, 1) 0%,
-      rgba(237, 237, 237, 1) 100%);
+  background-color: var(light-bg);
   padding: 2rem var(--zen-padding);
+  transition: background-color .1s;
+
+  .aside-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 
   .meta {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     gap: 1rem;
 
     p {
-      color: var(--black-color);
+      // color: var(--black-color);
       margin: 0;
 
       span {
@@ -290,12 +404,14 @@ aside {
   }
 
   img {
+    align-self: center;
     border-radius: 50%;
     max-width: 8rem;
   }
 }
 
 main {
+  background-color: var(light-bg);
   padding: 2rem var(--zen-padding);
 
   .section-title {
@@ -312,12 +428,6 @@ main {
 .social {
   display: flex;
   justify-content: center;
-}
-
-.settings-btn {
-  position: absolute;
-  top: 0;
-  left: 0;
 }
 
 // =====ANIMATIONS======
@@ -355,11 +465,6 @@ main {
     margin-inline: auto;
   }
 
-  // .small-container {
-  //   max-width: 800px;
-  //   margin-inline: auto;
-  // }
-
   .title-box {
     align-items: center;
   }
@@ -387,7 +492,7 @@ main {
   }
 
   main {
-    padding: 4rem var(--zen-padding);
+    padding: 3rem var(--zen-padding);
   }
 
   aside {

@@ -1,24 +1,9 @@
 # My portfolio
 
-## Project setup
-```
-npm install
-```
+Deploying to gh-pages:
+select default branch to be gh-pages.
+Clone the branch
+Update files
+Push origin gh-pages
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+It's ugly but, hey, it works!

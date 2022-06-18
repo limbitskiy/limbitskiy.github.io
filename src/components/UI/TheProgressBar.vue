@@ -4,6 +4,7 @@
             aria-valuemin="0" aria-valuemax="100" :style="`width: ${progress}%`"></div>
     </div>
 </template>
+
 <script setup>
 import { ref, defineProps, onMounted } from 'vue'
 
@@ -20,3 +21,9 @@ onMounted(() => {
     }, 100)
 })
 </script>
+
+<style scoped>
+.progress-bar {
+    background-color: var(--accent-color);
+}
+</style>

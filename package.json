@@ -1,5 +1,5 @@
 {
-  "name": "vue_nalivnoy",
+  "name": "my_portfolio",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "bootstrap": "^5.2.0-beta1",
+    "bootstrap-icons": "^1.8.3",
     "core-js": "^3.21.1",
     "vue": "^3.2.31",
     "vue-i18n": "^9.1.0",

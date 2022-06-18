@@ -105,7 +105,13 @@ export default createStore({
     experience: [
       "rh", "himpost", "root"
     ],
+    darkTheme: true,
+    lightTheme: false
   },
   mutations: {
+    toggleThemeSwitch(state) {
+      state.darkTheme = !state.darkTheme
+      state.lightTheme = !state.lightTheme
+    }
   },
 });

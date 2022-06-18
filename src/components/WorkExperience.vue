@@ -18,7 +18,7 @@ const props = defineProps(["experience"])
 <style lang="scss" scoped>
 .title {
   font-size: var(--font-big);
-  color: var(--black-color);
+  // color: var(--black-color);
   margin: 0;
 }
 
@@ -27,11 +27,5 @@ const props = defineProps(["experience"])
   font-style: italic;
   color: var(--lightgrey-text);
   margin-bottom: 0.5rem;
-}
-
-.desc {
-  // font-size: var(--font-big);
-  // color: var(--black-color);
-  // margin: 0;
 }
 </style>
