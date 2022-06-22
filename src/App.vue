@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { onMounted } from 'vue'
 import { useStore } from 'vuex'
 import { useI18n } from "vue-i18n";
 import i18n from '@/i18n.js'
@@ -12,17 +12,8 @@ import TheLocalePicker from "@/components/TheLocalePicker.vue";
 import ModeSwitch from '@/components/UI/ModeSwitch.vue';
 
 const store = useStore()
+
 // let cursorColor = 'white'
-// const cursorActiveColor = 'orange'
-
-// let lastMousePosition = {
-//   x: null,
-//   y: null
-// }
-
-// const cursors = []
-
-const aside = ref(null)
 
 const { t: translate } = useI18n({
   inheritLocale: true,
@@ -38,76 +29,39 @@ onMounted(() => {
   console.warn('Нашли ошибку? Напишите мне на gagarinbrood@gmail.com')
 
   // const canvas = document.querySelector('canvas')
+  // const ctx = canvas.getContext('2d')
+
   // canvas.width = innerWidth
   // canvas.height = innerHeight
 
-  // const ctx = canvas.getContext('2d')
-
-  // class Cursor {
-  //   constructor(position) {
-  //     this.position = position
-  //     this.opacity = 9
-  //   }
-
-  //   draw() {
-  //     ctx.beginPath()
-  //     ctx.fillStyle = `rgba(255, 255, 255, 0.${this.opacity})`
-  //     ctx.arc(this.position.x, this.position.y, 6, 0, Math.PI * 2)
-  //     ctx.fill()
-  //     this.opacity > 0 ? this.opacity-- : this.opacity
-
-  //     // console.log(ctx.fillStyle);
-  //   }
+  // let mousePosition = {
+  //   x: 0,
+  //   y: 0
   // }
+  // ctx.fillStyle = cursorColor
 
   // const loop = () => {
   //   requestAnimationFrame(loop)
-  //   ctx.clearRect(0, 0, innerWidth, innerHeight)
-  //   cursors.forEach((item, index) => {
-  //     if (item.opacity === 0) {
-  //       cursors.splice(index, 1)
-  //     }
-  //     item.draw()
-  //   })
+  //   ctx.fillStyle = 'rgba(0, 0, 0, .1)'
+  //   ctx.fillRect(0, 0, innerWidth, innerHeight)
   //   ctx.beginPath()
-  //   ctx.fillStyle = cursorColor
-  //   ctx.arc(lastMousePosition.x, lastMousePosition.y, 6, 0, Math.PI * 2)
+  //   ctx.fillStyle = 'white'
+  //   ctx.arc(mousePosition.x, mousePosition.y, 6, 0, Math.PI * 2)
   //   ctx.fill()
   // }
 
   // loop()
 
   // addEventListener('mousemove', (e) => {
-  //   cursors.push(new Cursor({ x: e.x, y: e.y }))
-  //   // console.log(cursors);
-
-  //   lastMousePosition = {
-  //     x: e.x,
-  //     y: e.y
-  //   }
-
-
+  //   mousePosition.x = e.x
+  //   mousePosition.y = e.y
   // })
-
-  // addEventListener('mousedown', () => {
-  //   cursorColor = 'orange'
-  // })
-
-  // addEventListener('mouseup', () => {
-  //   cursorColor = 'white'
-  // })
-
-  addEventListener('scroll', () => {
-    if (innerWidth > 768) {
-      aside.value.style.paddingTop = 'calc(' + scrollY + 'px + 4rem)'
-    }
-  })
 })
 
 </script>
 
 <template>
-  <!-- <canvas ref="canvas"></canvas> -->
+  <canvas ref="canvas"></canvas>
   <div class="layout-wrap" :class="{
     'light-theme-text': store.state.lightTheme, 'dark-theme-text': store.state.darkTheme,
     '': store.state.lightTheme, 'dark-theme-bg': store.state.darkTheme
@@ -497,6 +451,11 @@ main {
 
   aside {
     padding: 3rem var(--zen-padding);
+    min-width: 350px;
+
+    .aside-inner {
+      position: fixed;
+    }
   }
 }
 </style>
