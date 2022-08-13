@@ -34,7 +34,7 @@ export default createStore({
       },
       {
         name: "Remote Helpers",
-        address: "https://new.rh-s.com",
+        address: "https://www.rh-s.com/",
         tech: "wordpress",
       },
       {

@@ -1,32 +1,32 @@
 <script setup>
-import { onMounted } from 'vue'
-import { useStore } from 'vuex'
+import { onMounted } from "vue";
+import { useStore } from "vuex";
 import { useI18n } from "vue-i18n";
-import i18n from '@/i18n.js'
+import i18n from "@/i18n.js";
 // import ContactForm from "@/components/ContactForm.vue";
 import SocialIcons from "@/components/SocialIcons.vue";
 import LinksList from "@/components/LinksList.vue";
 import TheSkills from "@/components/TheSkills.vue";
 import WorkExperience from "@/components/WorkExperience.vue";
 import TheLocalePicker from "@/components/TheLocalePicker.vue";
-import ModeSwitch from '@/components/UI/ModeSwitch.vue';
+import ModeSwitch from "@/components/UI/ModeSwitch.vue";
 
-const store = useStore()
+const store = useStore();
 
 // let cursorColor = 'white'
 
 const { t: translate } = useI18n({
   inheritLocale: true,
   useScope: "global",
-})
+});
 
 const changeLocale = (lang) => {
   i18n.global.locale.value = lang;
 };
 
 onMounted(() => {
-  console.clear()
-  console.warn('Нашли ошибку? Напишите мне на gagarinbrood@gmail.com')
+  console.clear();
+  console.warn("Нашли ошибку? Напишите мне на gagarinbrood@gmail.com");
 
   // const canvas = document.querySelector('canvas')
   // const ctx = canvas.getContext('2d')
@@ -56,37 +56,73 @@ onMounted(() => {
   //   mousePosition.x = e.x
   //   mousePosition.y = e.y
   // })
-})
-
+});
 </script>
 
 <template>
   <canvas ref="canvas"></canvas>
-  <div class="layout-wrap" :class="{
-    'light-theme-text': store.state.lightTheme, 'dark-theme-text': store.state.darkTheme,
-    '': store.state.lightTheme, 'dark-theme-bg': store.state.darkTheme
-  }">
+  <div
+    class="layout-wrap"
+    :class="{
+      'light-theme-text': store.state.lightTheme,
+      'dark-theme-text': store.state.darkTheme,
+      '': store.state.lightTheme,
+      'dark-theme-bg': store.state.darkTheme,
+    }"
+  >
     <div class="layout">
-      <aside ref='aside' :class="{ 'light-theme-bg': store.state.lightTheme, '': store.state.darkTheme }">
+      <aside
+        ref="aside"
+        :class="{
+          'light-theme-bg': store.state.lightTheme,
+          '': store.state.darkTheme,
+        }"
+      >
         <div class="aside-inner">
           <div class="aside-header">
-            <TheLocalePicker :languages='store.state.locales' @changeLocale="changeLocale($event)" />
+            <TheLocalePicker
+              :languages="store.state.locales"
+              @changeLocale="changeLocale($event)"
+            />
             <ModeSwitch />
           </div>
           <div class="meta">
             <img :src="store.state.avatar.path" :alt="store.state.avatar.alt" />
             <div class="meta-text">
-              <p :class="{ 'light-theme-text': store.state.lightTheme, 'dark-theme-text': store.state.darkTheme }">
-                {{ translate('meta.keys.name') }}: <span>{{ translate('meta.values.name') }}</span>
+              <p
+                :class="{
+                  'light-theme-text': store.state.lightTheme,
+                  'dark-theme-text': store.state.darkTheme,
+                }"
+              >
+                {{ translate("meta.keys.name") }}:
+                <span>{{ translate("meta.values.name") }}</span>
               </p>
-              <p :class="{ 'light-theme-text': store.state.lightTheme, 'dark-theme-text': store.state.darkTheme }">
-                {{ translate('meta.keys.age') }}: <span>35</span>
+              <p
+                :class="{
+                  'light-theme-text': store.state.lightTheme,
+                  'dark-theme-text': store.state.darkTheme,
+                }"
+              >
+                {{ translate("meta.keys.age") }}: <span>36</span>
               </p>
-              <p :class="{ 'light-theme-text': store.state.lightTheme, 'dark-theme-text': store.state.darkTheme }">
-                {{ translate('meta.keys.country') }}: <span>{{ translate('meta.values.country') }}</span>
+              <p
+                :class="{
+                  'light-theme-text': store.state.lightTheme,
+                  'dark-theme-text': store.state.darkTheme,
+                }"
+              >
+                {{ translate("meta.keys.country") }}:
+                <span>{{ translate("meta.values.country") }}</span>
               </p>
-              <p :class="{ 'light-theme-text': store.state.lightTheme, 'dark-theme-text': store.state.darkTheme }">
-                {{ translate('meta.keys.position') }}: <span>{{ translate('meta.values.position') }}</span>
+              <p
+                :class="{
+                  'light-theme-text': store.state.lightTheme,
+                  'dark-theme-text': store.state.darkTheme,
+                }"
+              >
+                {{ translate("meta.keys.position") }}:
+                <span>{{ translate("meta.values.position") }}</span>
               </p>
             </div>
           </div>
@@ -98,23 +134,27 @@ onMounted(() => {
       <transition name="slide" appear>
         <main>
           <section class="about">
-            <div class="section-title">{{ translate('sections.about') }}:</div>
+            <div class="section-title">{{ translate("sections.about") }}:</div>
             <div class="section-text">
-              {{ translate('about') }}
+              {{ translate("about") }}
             </div>
           </section>
 
           <section class="section">
             <div class="split-two">
               <div>
-                <div class="section-title">{{ translate('sections.skills') }}:</div>
+                <div class="section-title">
+                  {{ translate("sections.skills") }}:
+                </div>
                 <div class="section-text">
                   <TheSkills :skills="store.state.skills" />
                 </div>
               </div>
 
               <div>
-                <div class="section-title">{{ translate('sections.experience') }}:</div>
+                <div class="section-title">
+                  {{ translate("sections.experience") }}:
+                </div>
                 <div class="section-text">
                   <WorkExperience :experience="store.state.experience" />
                 </div>
@@ -123,9 +163,7 @@ onMounted(() => {
           </section>
 
           <section>
-            <div class="section-title">
-              {{ translate('sections.pages') }}:
-            </div>
+            <div class="section-title">{{ translate("sections.pages") }}:</div>
             <div class="section-text">
               <LinksList :links="store.state.myPages" />
             </div>
@@ -292,7 +330,7 @@ canvas {
   gap: 1rem;
   margin-top: 1rem;
 
-  >* {
+  > * {
     width: 100%;
   }
 }
@@ -324,14 +362,14 @@ canvas {
 // =====PAGE=====
 
 .layout-wrap {
-  transition: background-color .5s;
+  transition: background-color 0.5s;
   width: 100vw;
 }
 
 aside {
   background-color: var(light-bg);
   padding: 2rem var(--zen-padding);
-  transition: background-color .1s;
+  transition: background-color 0.1s;
 
   .aside-header {
     display: flex;
@@ -409,7 +447,7 @@ main {
   }
 
   .btn-group {
-    >* {
+    > * {
       width: min-content;
     }
   }
